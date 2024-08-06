@@ -1,30 +1,45 @@
 (function($){
     $.fn.tabGrid = function(options){
-        const settings = $.extend({
+        const defaults = {
             dataSource : 'local',
             fields : [],
             data : [],
             searchable : true,
-            pageSize : 10
-        }, options)
+            pageSize : 10,
+            emptyMessage : "Data not found",
+            filtering : true
+        };
 
+        const settings = $.extend({}, defaults, options);
         if(typeof settings.fields !== 'object') settings.fields = []
+
         this.addClass('tabgrid-container')
         this.append(createToolbar())
 
-        const header = createTableHeader(settings.fields)
-        
-        const tableBody = createTableCell(settings.fields, settings.data)
-        this.append(createTable(header + tableBody))
-        
+        const header = createTableHeader(settings.fields, settings.filtering)
+      
+        const tableBody = typeof settings.data !== 'undefined' && settings.data !== null && settings.data.length !== 0 ? 
+            createTableBody(settings.fields, settings.data) : 
+            emptyTable(settings.emptyMessage, settings.fields.length);
 
-        console.log(tableBody)
+        this.append(createTable(header + tableBody))
+
         if(settings.dataSource === 'local'){
            
         }
     }
 })(jQuery)
 
+
+function emptyTable(message, rowLength){
+    return `
+        <tbody>
+            <tr class="tabgrid-row">
+                <td class="tabgrid-cell text-center" colspan="${rowLength}">${message}</td?
+            </tr>
+        </tbody>
+    `
+}
 
 function createTable(child){
     return `
@@ -36,10 +51,13 @@ function createTable(child){
     `
 }
 
-function createTableHeader(fileds){
+function createTableHeader(fields, isFilter){
     const headers = [];
-    fileds.forEach(field => {
-            headers.push(`<th class="tabgrid-header-cell">${field.label}</th>`)
+    fields.forEach(field => {
+            
+            headers.push(
+                isFilter ? `<th class="tabgrid-header-cell-filter" data-tg-head-key="${field.key}">${field.label}</th>` :
+                 `<th class="tabgrid-header-cell">${field.label}</th>`)
     });
 
     return `
@@ -51,7 +69,7 @@ function createTableHeader(fileds){
     `
 }
 
-function createTableCell(fields, values){
+function createTableBody(fields, values){
     const rows = [];
 
     values.forEach((value) => {

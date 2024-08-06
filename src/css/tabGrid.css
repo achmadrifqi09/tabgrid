@@ -7,8 +7,6 @@
     width: 100%;
     margin-top: 64px;
 }
-
-
 /* ? remove */
 
 .tabgrid-container{
@@ -40,10 +38,21 @@
     border-radius: 0px 8px 0px 0px;
 }
 
+
+.tabgrid button{
+    background-color: transparent;
+    border: none;
+}
+
+.tabgrid button:hover{
+    cursor: pointer;
+}
+
 .tabgrid-header-row{
     background-color: #F6F8FA;
-    border-radius: 120px;
+    border-radius: 12px;
     border-bottom: 1px solid #e8e9ec;
+    position: relative;
 }
 
 .tabgrid-header-cell{
@@ -51,6 +60,36 @@
     padding: 12px 24px;
     text-transform: capitalize;
     line-height: 1.625;
+}
+
+.tabgrid-header-cell-filter{
+    font-weight: 400;
+    padding: 12px 24px;
+    text-transform: capitalize;
+    line-height: 1.625;
+    position: relative; 
+}
+
+.tabgrid-header-cell-filter::after{
+    content: "";
+    position: relative;
+    top: 3px;
+    margin-left: 6px;
+    display: inline-block;
+    width: 1em;
+    height: 1em;
+    --svg: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='none' stroke='%23000' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M10 4v16l-6-5.5M14 20V4l6 5.5'/%3E%3C/svg%3E");
+    background-color: #838383;
+    -webkit-mask-image: var(--svg);
+    mask-image: var(--svg);
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+    -webkit-mask-size: 100% 100%;
+    mask-size: 100% 100%;
+}
+
+.tabgrid-header-cell-filter:hover{
+    cursor: pointer;
 }
 
 .tabgrid-cell{
@@ -79,16 +118,21 @@
 
 .tabgrid-search{
     border: 1px solid #e8e9ec;
-    padding: 12px 16px;
+    padding: 10px 16px;
     background-color: white;
     border-radius: 8px;
     font-size: 1em;
 }
 
+.tabgrid-search:focus{
+    outline: 1px solid hsl(243, 84%, 68%);
+    border: 1px solid transparent;
+}
+
 .tabgrid-page-size{
     background-color: white;
     border: 1px solid #e8e9ec;
-    padding: 12px 16px;
+    padding: 10px 16px;
     border-radius: 8px;
     font-size: 1em;
 }
@@ -96,3 +140,153 @@
 .tabgrid-page-size option{
     background: transparent;
 }
+
+.tabgrid-page-size:focus{
+    outline: 2px solid hsl(243, 84%, 68%);
+}
+
+.tabgrid-pagination{
+    display: flex;
+    width: 100%;
+    justify-content: end;
+    align-items: center;
+    gap: 8px;
+}
+
+.tabgrid-btn-prev{
+    aspect-ratio: 1/1;
+    padding: 4px;
+    width: 36px;
+    height: 36px;
+    border: 1px solid #d5d6d8;
+    background-color: white;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.tabgrid-btn-next{
+    aspect-ratio: 1/1;
+    padding: 4px;
+    width: 36px;
+    height: 36px;
+    border: 1px solid #d5d6d8;
+    background-color: white;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.tabgrid-btn-page{
+    aspect-ratio: 1/1;
+    padding: 4px;
+    width: 36px;
+    height: 36px;
+    border: 1px solid #d5d6d8;
+    background-color: white;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #585353;
+}
+
+.tabgrid-page-active{
+    color: white;
+    background-color: #6961F7;
+    border: none;
+    aspect-ratio: 1/1;
+    padding: 4px;
+    border-radius: 6px;
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.tabgrid-pagination button:hover{
+    cursor: pointer;
+    background-color: #fafafa;
+}
+
+.tabgrid-page-active:hover{
+    background-color: #5d55f0 !important;
+}
+
+.tabgrid-prev-icon {
+    display: inline-block;
+    width: 1.5em;
+    height: 1.5em;
+    --svg: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cg fill='none' stroke='%23000' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5'%3E%3Cpath d='m13 19l-6-7l6-7'/%3E%3Cpath d='m17 19l-6-7l6-7'/%3E%3C/g%3E%3C/svg%3E");
+    background-color: #585353;
+    -webkit-mask-image: var(--svg);
+    mask-image: var(--svg);
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+    -webkit-mask-size: 100% 100%;
+    mask-size: 100% 100%;
+  }
+
+  .tabgrid-next-icon {
+    display: inline-block;
+    width: 1.5em;
+    height: 1.5em;
+    --svg: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cg fill='none' stroke='%23000' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5'%3E%3Cpath d='m11 19l6-7l-6-7'/%3E%3Cpath d='m7 19l6-7l-6-7'/%3E%3C/g%3E%3C/svg%3E");
+    background-color: #585353;
+    -webkit-mask-image: var(--svg);
+    mask-image: var(--svg);
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+    -webkit-mask-size: 100% 100%;
+    mask-size: 100% 100%;
+  }
+
+  .tabgrid-arrow-top-icon {
+    display: inline-block;
+    width: 1em;
+    height: 1em;
+    --svg: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='none' stroke='%23000' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='m19 15l-7-6l-7 6'/%3E%3C/svg%3E");
+    background-color: #838383;
+    -webkit-mask-image: var(--svg);
+    mask-image: var(--svg);
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+    -webkit-mask-size: 100% 100%;
+    mask-size: 100% 100%;
+  }
+
+  .tabgrid-arrow-down-icon {
+    display: inline-block;
+    width: 1em;
+    height: 1em;
+    --svg: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='none' stroke='%23000' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='m19 9l-7 6l-7-6'/%3E%3C/svg%3E");
+    background-color: #838383;
+    -webkit-mask-image: var(--svg);
+    mask-image: var(--svg);
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+    -webkit-mask-size: 100% 100%;
+    mask-size: 100% 100%;
+  }
+
+  .tabgrid-filter-icon {
+    margin-left: 8px;
+    display: inline-block;
+    width: 1em;
+    height: 1em;
+    --svg: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='none' stroke='%23000' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M10 4v16l-6-5.5M14 20V4l6 5.5'/%3E%3C/svg%3E");
+    background-color: #838383;
+    -webkit-mask-image: var(--svg);
+    mask-image: var(--svg);
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+    -webkit-mask-size: 100% 100%;
+    mask-size: 100% 100%;
+  }
+
+  .text-center{
+    text-align: center;
+  }
